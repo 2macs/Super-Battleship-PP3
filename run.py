@@ -34,15 +34,18 @@ class GridBuilder:
     
     def PositionShips(self):
         """ Randomly locate NUMSHIPS of ships on the board"""
-        i = 0 
-        while i < NUMSHIPS:
+        shipsPlaced = 0 
+        while shipsPlaced < NUMSHIPS:
             random_row = random.randint(0,SIZE - 1)
             random_col = random.randint(0,SIZE - 1)
             thisLoc = [random_row,random_col]
-            print(F'Rand row is {random_row}, random column is {random_col}')
-            self.shipPositions.append(thisLoc)
-            i += 1
+            print(F'Rand row is {random_row}, random column is {random_col}')           
+            if thisLoc not in self.shipPositions:
+                self.shipPositions.append(thisLoc)
+                shipsPlaced += 1
+        
         print(self.shipPositions)
+            
 
 
 def RunGame():
