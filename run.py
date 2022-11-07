@@ -27,9 +27,9 @@ class GridBuilder:
 
     def printGrid(self):
         """ Build and print the computer and player grids"""
-        print(f'{self.name} grid')
+        print(f'{self.name} grid'.center(width))
         for row in self.battleBoard:
-            print("".join(row))
+            print("".join(row).center(width))
         print('\n')
     
     def PositionShips(self):
@@ -39,12 +39,20 @@ class GridBuilder:
             random_row = random.randint(0,SIZE - 1)
             random_col = random.randint(0,SIZE - 1)
             thisLoc = [random_row,random_col]
-            print(F'Rand row is {random_row}, random column is {random_col}')           
+            print(F'Rand row is {random_row}, random column is {random_col}')  
+            #ensure ship location not already taken         
             if thisLoc not in self.shipPositions:
-                self.shipPositions.append(thisLoc)
+                self.shipPositions.append(thisLoc) 
                 shipsPlaced += 1
         
-        print(self.shipPositions)
+        for location in self.shipPositions:
+           my_row = location[0]    
+           my_col = location[1]    
+           self.battleBoard[my_row][my_col] = 'S'
+           print(f'Row is {my_row}, col is {my_col}')
+        
+        print(self.shipPositions) 
+        print(self.battleBoard)
             
 
 
