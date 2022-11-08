@@ -40,32 +40,38 @@ class GridBuilder:
             random_col = random.randint(0,SIZE - 1)
             thisLoc = [random_row,random_col]
             print(F'Rand row is {random_row}, random column is {random_col}')  
-            #ensure ship location not already taken         
+            # ensure ship location not already taken         
             if thisLoc not in self.shipPositions:
                 self.shipPositions.append(thisLoc) 
                 shipsPlaced += 1
         
+        # draw the ships on the board
         for location in self.shipPositions:
            my_row = location[0]    
            my_col = location[1]    
            self.battleBoard[my_row][my_col] = 'S'
            print(f'Row is {my_row}, col is {my_col}')
         
-        print(self.shipPositions) 
+        print(f'{self.name} board is {self.shipPositions}') 
         print(self.battleBoard)
             
 
-
-def RunGame():
-    playerBoard = GridBuilder('player', 'Blue', SIZE, NUMSHIPS)
-    computerBoard = GridBuilder('Computer', 'Green', SIZE, NUMSHIPS)
-    GridBuilder.printGrid(playerBoard)
-    GridBuilder.printGrid(computerBoard)
-    GridBuilder.PositionShips(playerBoard)
-
-def main():
+def welcomeMessage():
     print('-----Welcome to Battleship! Destroy the Enemy fleet!-----'.center(width))
     print('-----Empty sea is 0, ship loc is S, hit is *, miss is X-----\n'.center(width))
-    RunGame()
 
+def main():
+    """    Print welcome message, initialise boards, start game
+    """
+    welcomeMessage()   
+    # Build initial board
+    playerBoard = GridBuilder('player', 'Blue', SIZE, NUMSHIPS)
+    computerBoard = GridBuilder('Computer', 'Green', SIZE, NUMSHIPS)      
+    # Position ships on player board and computer board
+    GridBuilder.PositionShips(playerBoard)
+    GridBuilder.PositionShips(computerBoard)
+    GridBuilder.printGrid(playerBoard)
+    GridBuilder.printGrid(computerBoard)
+    
+    
 main()
