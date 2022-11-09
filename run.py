@@ -32,12 +32,17 @@ class GridBuilder:
             print("".join(row).center(width))
         print('\n')
     
+    def getRandomNumber(self, SIZE):
+        """ Generate a random number and return it"""
+        Size = SIZE
+        return random.randint(0,Size - 1)
+
     def PositionShips(self):
         """ Randomly locate NUMSHIPS of ships on the board"""
         shipsPlaced = 0 
         while shipsPlaced < NUMSHIPS:
-            random_row = random.randint(0,SIZE - 1)
-            random_col = random.randint(0,SIZE - 1)
+            random_row = self.getRandomNumber(SIZE)
+            random_col = self.getRandomNumber(SIZE)
             thisLoc = [random_row,random_col]
             print(F'Rand row is {random_row}, random column is {random_col}')  
             # ensure ship location not already taken         
@@ -51,9 +56,12 @@ class GridBuilder:
            my_col = location[1]    
            self.battleBoard[my_row][my_col] = 'S'
            print(f'Row is {my_row}, col is {my_col}')
+
+
+
         
-        print(f'{self.name} board is {self.shipPositions}') 
-        print(self.battleBoard)
+        # print(f'{self.name} ship locs are {self.shipPositions}') 
+        # print(self.battleBoard)
             
 
 def welcomeMessage():
