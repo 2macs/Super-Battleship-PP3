@@ -63,17 +63,43 @@ class GridBuilder:
         guess = []
         
         if my_name == 'player':
-            playerGuessRow = input('Enter a row number 1 - 6: ')
-            playerGuessCol = input('Enter a column number 1 - 6: ')
+            while True:
+                try:
+                    playerGuessRow = int(input('Enter a row number 0 - 5: '))
+                except ValueError:
+                    print('Entry must be a number')
+                    continue
+
+                if playerGuessRow >= 0 and playerGuessRow <= 5:
+                    print(f'You entered: {playerGuessRow}')
+                    break
+                else:
+                    print('The integer must be in the range 0-5')
+            
+            while True:
+                try:
+                    playerGuessCol = int(input('Enter a column number 0 - 5: '))
+                except ValueError:
+                    print('Entry must be a number')
+                    continue
+
+                if playerGuessCol >= 0 and playerGuessCol <= 5:
+                    print(f'You entered: {playerGuessCol}')
+                    break
+                else:
+                    print('The integer must be in the range 0-5')
+
             print(f'You guessed row {playerGuessRow} and column {playerGuessCol}')
             guess = [playerGuessRow, playerGuessCol]
             print(guess)
+
         else:
             computerGuessRow = self.getRandomNumber(SIZE)
             computerGuessCol =  self.getRandomNumber(SIZE)
             print(f'Computer guessed row {computerGuessRow} and col {computerGuessCol}')
             guess = [computerGuessRow, computerGuessCol]
             print(guess)
+    
 
 
 
