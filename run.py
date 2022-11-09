@@ -22,7 +22,9 @@ class GridBuilder:
         self.grid = SIZE    
         self.numships = NUMSHIPS    
         self.battleBoard = [['0' for x in range(SIZE)] for y in range(SIZE)]
-        self.shipPositions = []       
+        self.shipPositions = [] 
+        self.guesses = []     
+        self.score = 0 
         
 
     def printGrid(self):
@@ -55,11 +57,28 @@ class GridBuilder:
            my_row = location[0]    
            my_col = location[1]    
            self.battleBoard[my_row][my_col] = 'S'
-           print(f'Row is {my_row}, col is {my_col}')
-
-
-
+           print(f'Row is {my_row}, col is {my_col}')   
+    
+    def get_guess(self, my_name):
+        guess = []
         
+        if my_name == 'player':
+            playerGuessRow = input('Enter a row number 1 - 6: ')
+            playerGuessCol = input('Enter a column number 1 - 6: ')
+            print(f'You guessed row {playerGuessRow} and column {playerGuessCol}')
+            guess = [playerGuessRow, playerGuessCol]
+            print(guess)
+        else:
+            computerGuessRow = self.getRandomNumber(SIZE)
+            computerGuessCol =  self.getRandomNumber(SIZE)
+            print(f'Computer guessed row {computerGuessRow} and col {computerGuessCol}')
+            guess = [computerGuessRow, computerGuessCol]
+            print(guess)
+
+
+
+
+           
         # print(f'{self.name} ship locs are {self.shipPositions}') 
         # print(self.battleBoard)
             
@@ -78,8 +97,15 @@ def main():
     # Position ships on player board and computer board
     GridBuilder.PositionShips(playerBoard)
     GridBuilder.PositionShips(computerBoard)
+    playGame(playerBoard, computerBoard)
+
+def playGame(playerBoard, computerBoard):
+    """ Controls the game loop"""
     GridBuilder.printGrid(playerBoard)
-    GridBuilder.printGrid(computerBoard)
+    GridBuilder.printGrid(computerBoard)  
+    GridBuilder.get_guess(playerBoard, 'player')
+    GridBuilder.get_guess(computerBoard,'computer')
+    
     
     
 main()
