@@ -46,7 +46,7 @@ class GridBuilder:
             random_row = self.getRandomNumber(SIZE)
             random_col = self.getRandomNumber(SIZE)
             thisLoc = [random_row,random_col]
-            print(F'Rand row is {random_row}, random column is {random_col}')  
+            # print(F'Rand row is {random_row}, random column is {random_col}')  
             # ensure ship location not already taken         
             if thisLoc not in self.shipPositions:
                 self.shipPositions.append(thisLoc) 
