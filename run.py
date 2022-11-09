@@ -58,7 +58,15 @@ class GridBuilder:
            my_col = location[1]    
            self.battleBoard[my_row][my_col] = 'S'
            print(f'Row is {my_row}, col is {my_col}')   
-    
+
+    def add_guess(self, guess):
+        """ Tke the guess from the player and the computer, add to guess list if a new guess //
+        message the user to pick again if already guessed       """
+            
+        self.guesses.append(guess)
+        print(f'Output form AddGuesses method is {self.guesses}')
+
+        
     def get_guess(self, my_name):
         guess = []
         
@@ -75,6 +83,7 @@ class GridBuilder:
                     break
                 else:
                     print('The integer must be in the range 0-5')
+                
             
             while True:
                 try:
@@ -92,26 +101,21 @@ class GridBuilder:
             print(f'You guessed row {playerGuessRow} and column {playerGuessCol}')
             guess = [playerGuessRow, playerGuessCol]
             print(guess)
+            return guess
 
         else:
             computerGuessRow = self.getRandomNumber(SIZE)
             computerGuessCol =  self.getRandomNumber(SIZE)
             print(f'Computer guessed row {computerGuessRow} and col {computerGuessCol}')
             guess = [computerGuessRow, computerGuessCol]
-            print(guess)
-    
+            print(guess)  
+            return guess 
 
-
-
-
-           
-        # print(f'{self.name} ship locs are {self.shipPositions}') 
-        # print(self.battleBoard)
-            
 
 def welcomeMessage():
     print('-----Welcome to Battleship! Destroy the Enemy fleet!-----'.center(width))
-    print('-----Empty sea is 0, ship loc is S, hit is *, miss is X-----\n'.center(width))
+    print('-----Empty sea is 0, ship loc is S, hit is X, miss is M-----\n'.center(width))
+
 
 def main():
     """    Print welcome message, initialise boards, start game
@@ -125,13 +129,14 @@ def main():
     GridBuilder.PositionShips(computerBoard)
     playGame(playerBoard, computerBoard)
 
+
 def playGame(playerBoard, computerBoard):
     """ Controls the game loop"""
     GridBuilder.printGrid(playerBoard)
     GridBuilder.printGrid(computerBoard)  
-    GridBuilder.get_guess(playerBoard, 'player')
-    GridBuilder.get_guess(computerBoard,'computer')
-    
-    
-    
+    playerGuess = GridBuilder.get_guess(playerBoard, 'player')
+    computerGuess = GridBuilder.get_guess(computerBoard, 'computer') 
+    GridBuilder.add_guess(playerBoard, playerGuess)
+    GridBuilder.add_guess(computerBoard, computerGuess)      
+
 main()
