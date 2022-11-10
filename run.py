@@ -68,7 +68,7 @@ class GridBuilder:
         guess_row = int(guess[0])
         guess_col = int(guess[1])
         print(f'Guess breaks down to row {guess_row} and col {guess_col}')
-
+        
         # check if guess is a hit or a miss
         if guess in self.shipPositions:
             self.score += 1
@@ -149,11 +149,11 @@ def playGame(playerBoard, computerBoard):
         GridBuilder.printGrid(playerBoard)
         GridBuilder.printGrid(computerBoard)  
         playerGuess = GridBuilder.get_guess(playerBoard, 'player')
-        playerResult = GridBuilder.add_guess(playerBoard, playerGuess)
+        playerResult = GridBuilder.add_guess(computerBoard, playerGuess)
         print(f'You scored a {playerResult}!')
         checkEndGame(playerBoard, computerBoard)
         computerGuess = GridBuilder.get_guess(computerBoard, 'computer')     
-        computerResult = GridBuilder.add_guess(computerBoard, computerGuess)    
+        computerResult = GridBuilder.add_guess(playerBoard, computerGuess)    
         print(f'You scored a {computerResult}!')
         print(f'Player score is {playerBoard.score}. Computer score is {computerBoard.score}')
         checkEndGame(playerBoard, computerBoard)
