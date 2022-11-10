@@ -173,6 +173,7 @@ def checkEndGame(playerBoard, computerBoard):
         print(f'You hit all the computer ships! You win!')
         replay = input('Play again Y / N ?: ')
         if replay.upper() == 'Y':
+            os.system('clear')
             main()
         else:
             exit(-1)
