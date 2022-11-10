@@ -145,16 +145,37 @@ def main():
 
 def playGame(playerBoard, computerBoard):
     """ Controls the game loop"""
-    GridBuilder.printGrid(playerBoard)
-    GridBuilder.printGrid(computerBoard)  
-    playerGuess = GridBuilder.get_guess(playerBoard, 'player')
-    playerResult = GridBuilder.add_guess(playerBoard, playerGuess)
-    print(f'You scored a {playerResult}!')
-    computerGuess = GridBuilder.get_guess(computerBoard, 'computer')     
-    computerResult = GridBuilder.add_guess(computerBoard, computerGuess)    
-    print(f'You scored a {computerResult}!')
-    print(f'Player score is {playerBoard.score}')
-    
+    while True:
+        GridBuilder.printGrid(playerBoard)
+        GridBuilder.printGrid(computerBoard)  
+        playerGuess = GridBuilder.get_guess(playerBoard, 'player')
+        playerResult = GridBuilder.add_guess(playerBoard, playerGuess)
+        print(f'You scored a {playerResult}!')
+        checkEndGame(playerBoard, computerBoard)
+        computerGuess = GridBuilder.get_guess(computerBoard, 'computer')     
+        computerResult = GridBuilder.add_guess(computerBoard, computerGuess)    
+        print(f'You scored a {computerResult}!')
+        print(f'Player score is {playerBoard.score}. Computer score is {computerBoard.score}')
+        checkEndGame(playerBoard, computerBoard)
+
+def checkEndGame(playerBoard, computerBoard):
+    """ What happens when the end of the game is reached"""
+    if playerBoard.score == NUMSHIPS: # All player ships are sunk
+        print(f'Computer has hit all your ships ! You lose this one!')
+        replay = input('Play again Y / N ?: ')
+        if replay.upper() == 'Y':
+            main()
+        else:
+            exit(-1)
+    elif computerBoard.score == NUMSHIPS:
+        print(f'You hit all the computer ships! You win!')
+        replay = input('Play again Y / N ?: ')
+        if replay.upper() == 'Y':
+            main()
+        else:
+            exit(-1)
+        
+
 
 
 # Kick off game
