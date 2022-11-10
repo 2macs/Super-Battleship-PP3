@@ -57,7 +57,7 @@ class GridBuilder:
            my_row = location[0]    
            my_col = location[1]    
            self.battleBoard[my_row][my_col] = 'S'
-           print(f'Row is {my_row}, col is {my_col}')   
+           # print(f'Row is {my_row}, col is {my_col}')   
 
     def add_guess(self, guess):
         """ Tke the guess from the player and the computer, add to guess list if a new guess //
@@ -65,6 +65,13 @@ class GridBuilder:
             
         self.guesses.append(guess)
         print(f'Output form AddGuesses method is {self.guesses}')
+
+        # check if guess is a hit or a miss
+        if guess in self.shipPositions:
+            self.score += 1
+            return 'HIT'
+        else:
+            return 'MISS'
 
         
     def get_guess(self, my_name):
@@ -136,7 +143,9 @@ def playGame(playerBoard, computerBoard):
     GridBuilder.printGrid(computerBoard)  
     playerGuess = GridBuilder.get_guess(playerBoard, 'player')
     computerGuess = GridBuilder.get_guess(computerBoard, 'computer') 
-    GridBuilder.add_guess(playerBoard, playerGuess)
-    GridBuilder.add_guess(computerBoard, computerGuess)      
+    playerResult = GridBuilder.add_guess(playerBoard, playerGuess)
+    computerResult = GridBuilder.add_guess(computerBoard, computerGuess)      
+    print(playerResult)
+    print(computerResult)
 
 main()
