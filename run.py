@@ -4,6 +4,7 @@
 
 import random
 import os
+from subprocess import call
 
 SIZE = 6
 NUMSHIPS = 4
@@ -158,6 +159,7 @@ def playGame(playerBoard, computerBoard):
         print(f'Player score is {playerBoard.score}. Computer score is {computerBoard.score}')
         checkEndGame(playerBoard, computerBoard)
 
+
 def checkEndGame(playerBoard, computerBoard):
     """ What happens when the end of the game is reached"""
     if playerBoard.score == NUMSHIPS: # All player ships are sunk
@@ -175,8 +177,6 @@ def checkEndGame(playerBoard, computerBoard):
         else:
             exit(-1)
         
-
-
 
 # Kick off game
 main()
