@@ -10,6 +10,7 @@ SIZE = 6
 NUMSHIPS = 4
 game_state_over = False 
 
+# Get terminal width to enable centering in the screen
 width = os.get_terminal_size().columns
 
 
@@ -62,13 +63,11 @@ class GridBuilder:
 
     def add_guess(self, guess):
         """ Tke the guess from the player and the computer, add to guess list if a new guess //
-        message the user to pick again if already guessed       """
+        message the user to pick again if already guessed"""
             
-        self.guesses.append(guess)
-        print(f'Output form AddGuesses method is {self.guesses}')
         guess_row = int(guess[0])
         guess_col = int(guess[1])
-        print(f'Guess breaks down to row {guess_row} and col {guess_col}')
+       # print(f'Guess breaks down to row {guess_row} and col {guess_col}')
         
         # check if guess is a hit or a miss
         if guess in self.shipPositions:
@@ -82,9 +81,12 @@ class GridBuilder:
 
         
     def get_guess(self, my_name):
+        """ Get a row and column from the user, ensure the entry is right type and range
+        """
         guess = []
         
         if my_name == 'player':
+           
             while True:
                 try:
                     playerGuessRow = int(input('Enter a row number 0 - 5: '))
@@ -93,12 +95,12 @@ class GridBuilder:
                     continue
 
                 if playerGuessRow >= 0 and playerGuessRow <= 5:
-                    print(f'You entered: {playerGuessRow}')
+                    # print(f'You entered: {playerGuessRow}')
                     break
                 else:
                     print('The integer must be in the range 0-5')
+                    
                 
-            
             while True:
                 try:
                     playerGuessCol = int(input('Enter a column number 0 - 5: '))
@@ -107,15 +109,15 @@ class GridBuilder:
                     continue
 
                 if playerGuessCol >= 0 and playerGuessCol <= 5:
-                    print(f'You entered: {playerGuessCol}')
+                    # print(f'You entered: {playerGuessCol}')
                     break
                 else:
                     print('The integer must be in the range 0-5')
 
-            print(f'You guessed row {playerGuessRow} and column {playerGuessCol}')
+            # print(f'You guessed row {playerGuessRow} and column {playerGuessCol}')
             guess = [playerGuessRow, playerGuessCol]
-            print(guess)
-            return guess
+            print(f'Player guessed {guess}')   
+            return guess             
 
         else:
             computerGuessRow = self.getRandomNumber(SIZE)
@@ -124,8 +126,24 @@ class GridBuilder:
             guess = [computerGuessRow, computerGuessCol]
             print(guess)  
             return guess 
+    
+    def validateGuess(self, guess):
+        """Checks to see if the guess has already been tried, if it has it 
+        prompts for the input to happen again"""
+        if self.name == 'playerBoard':
+            my_name = 'player'
+        else:
+             my_name = 'computer'
+        
+        if guess not in self.guesses:
+            self.guesses.append(guess)
+            return guess
+        else:
+            print('These co-ordinates have been tried already, try again')
+            return 0
+            
 
-
+            
 def welcomeMessage():
     print('-----Welcome to Battleship! Destroy the Enemy fleet!-----'.center(width))
     print('-----Empty sea is 0, ship loc is S, hit is X, miss is M-----\n'.center(width))
@@ -147,16 +165,28 @@ def main():
 def playGame(playerBoard, computerBoard):
     """ Controls the game loop"""
     while True:
+        PlayerValidInput = 1
         GridBuilder.printGrid(playerBoard)
         GridBuilder.printGrid(computerBoard)  
         playerGuess = GridBuilder.get_guess(playerBoard, 'player')
-        playerResult = GridBuilder.add_guess(computerBoard, playerGuess)
-        print(f'You scored a {playerResult}!')
-        checkEndGame(playerBoard, computerBoard)
+        PlayerValidInput = GridBuilder.validateGuess(playerBoard, playerGuess)
+        print(f'Player valid input is {PlayerValidInput}')
+
+        if PlayerValidInput == 0:
+            playerGuess = GridBuilder.get_guess(playerBoard, 'player')     
+            PlayerValidInput = GridBuilder.validateGuess(playerBoard, playerGuess)
+            playerResult = GridBuilder.add_guess(computerBoard, PlayerValidInput)
+            print(f'Player scored a {playerResult}!')
+            checkEndGame(playerBoard, computerBoard)            
+        else:
+            playerResult = GridBuilder.add_guess(computerBoard, PlayerValidInput)
+            print(f'Player scored a {playerResult}!')
+            checkEndGame(playerBoard, computerBoard)
+
         computerGuess = GridBuilder.get_guess(computerBoard, 'computer')     
         computerResult = GridBuilder.add_guess(playerBoard, computerGuess)    
-        print(f'You scored a {computerResult}!')
-        print(f'Player score is {playerBoard.score}. Computer score is {computerBoard.score}')
+        print(f'Computer scored a {computerResult}!')
+        print(f'Player has lost {playerBoard.score} ship(s). Computer has lost {computerBoard.score} ship(s)')
         checkEndGame(playerBoard, computerBoard)
 
 
@@ -178,6 +208,4 @@ def checkEndGame(playerBoard, computerBoard):
         else:
             exit(-1)
         
-
-# Kick off game
 main()
