@@ -83,18 +83,11 @@ A function called Main is used to initiate - kick off the game and a second func
 * Add sound when player shots and computer shots are fired. I succedded in doing this using the Spyder IDE with local file storage however, I was unable to play sound files stored in the github repository.
 * Prompt player for number of ships, this version the number of ships is constant at 5.
 * Prompt player for name, this version the player is called 'Player'.
-* Add multo size ships with different orientations.
-* Introudce a time element i.e. the enemy ships may move across the grid and escape if not destroyed in time. 
+* Add multi size ships with different orientations.
+* Introduce a time element i.e. the enemy ships may move across the grid and escape if not destroyed in time.
 
 
-
-
-
-
-
-
-
-
+## Code Institute
 * Your code must be placed in the `run.py` file
 * Your dependencies must be placed in the `requirements.txt` file
 * Do not edit any of the other files or your code may not deploy properly
