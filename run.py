@@ -4,7 +4,8 @@
 
 import random
 import os
-from subprocess import call
+from colorama import Fore, Back, Style
+
 
 SIZE = 6
 NUMSHIPS = 5
@@ -12,6 +13,8 @@ game_state_over = False
 
 # Get terminal width to enable centering in the screen
 width = os.get_terminal_size().columns
+height = os.get_terminal_size().lines
+print(height)
 
 
 class GridBuilder:
@@ -31,10 +34,11 @@ class GridBuilder:
 
     def printGrid(self):
         """ Build and print the computer and player grids"""
-        print(f'{self.name} grid'.center(width))
+        print(Fore.BLUE + f'{self.name} grid'.center(width))
+        print(Style.RESET_ALL)
         for row in self.battleBoard:
             print("".join(row).center(width))
-        print('\n')
+       
     
     def getRandomNumber(self, SIZE):
         """ Generate a random number and return it"""
@@ -63,7 +67,6 @@ class GridBuilder:
                 self.battleBoard[my_row][my_col] = 'S'
                 # print(f'Row is {my_row}, col is {my_col}')   
         else:
-            print(f'Computer ship position are {self.shipPositions}')
             for location in self.shipPositions:
                 my_row = location[0]    
                 my_col = location[1]    
@@ -148,8 +151,9 @@ class GridBuilder:
 
             
 def welcomeMessage():
-    print('-----Welcome to Battleship! Destroy the Enemy fleet!-----'.center(width))
-    print('-----Empty sea is 0, ship loc is S, hit is X, miss is M-----\n'.center(width))
+    print(Fore.YELLOW + '-----Welcome to Battleship! Destroy the Enemy fleet!-----'.center(width))
+    print(Fore.YELLOW +'-----Empty sea is 0, ship loc is S, hit is X, miss is M-----\n'.center(width))
+    print(Style.RESET_ALL)
 
 
 def main():
@@ -178,11 +182,13 @@ def playGame(playerBoard, computerBoard):
             playerGuess = GridBuilder.get_guess(playerBoard, 'player')     
             PlayerValidInput = GridBuilder.validateGuess(playerBoard, playerGuess)
             playerResult = GridBuilder.add_guess(computerBoard, PlayerValidInput)
-            print(f'Player scored a {playerResult}!')
+            print(Fore.GREEN + f'Player scored a {playerResult}!')
+            print(Style.RESET_ALL)
             checkEndGame(playerBoard, computerBoard)            
         else:
             playerResult = GridBuilder.add_guess(computerBoard, PlayerValidInput)
-            print(f'Player scored a {playerResult}!')
+            print(Fore.GREEN + f'Player scored a {playerResult}!')
+            print(Style.RESET_ALL)
             checkEndGame(playerBoard, computerBoard)
 
         computerGuess = GridBuilder.get_guess(computerBoard, 'computer') 
@@ -191,11 +197,13 @@ def playGame(playerBoard, computerBoard):
             computerGuess = GridBuilder.get_guess(computerBoard, 'computer') 
             computerValidInput = GridBuilder.validateGuess(computerBoard, computerGuess) 
             computerResult = GridBuilder.add_guess(playerBoard, computerGuess)    
-            print(f'Computer scored a {computerResult}!')
+            print(Fore.RED + f'Computer scored a {computerResult}!')
+            print(Style.RESET_ALL)
             checkEndGame(playerBoard, computerBoard)
         else:
             computerResult = GridBuilder.add_guess(playerBoard, computerGuess) 
-            print(f'Computer scored a {computerResult}!')
+            print(Fore.RED + f'Computer scored a {computerResult}!')
+            print(Style.RESET_ALL)
             checkEndGame(playerBoard, computerBoard) 
 
         playerQuest = input('Continue game, Y / N?: ') 
@@ -212,14 +220,16 @@ def playGame(playerBoard, computerBoard):
 def checkEndGame(playerBoard, computerBoard):
     """ What happens when the end of the game is reached"""
     if playerBoard.score == NUMSHIPS: # All player ships are sunk
-        print(f'Computer has hit all your ships ! You lose this one!')
+        print(Fore.RED + f'Computer has hit all your ships ! You lose this one!')
+        print(Style.RESET_ALL)
         replay = input('Play again Y / N ?: ')
         if replay.upper() == 'Y':
             main()
         else:
             exit(-1)
     elif computerBoard.score == NUMSHIPS:
-        print(f'You hit all the computer ships! You win!')
+        print(Fore.BLUE + f'You hit all the computer ships! You win!')
+        print(Style.RESET_ALL)
         replay = input('Play again Y / N ?: ')
         if replay.upper() == 'Y':
             os.system('clear')
