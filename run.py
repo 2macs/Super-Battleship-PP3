@@ -5,6 +5,7 @@
 import random
 import os
 from colorama import Fore, Back, Style
+from playsound import playsound
 
 
 SIZE = 6
