@@ -1,8 +1,8 @@
 ![CI logo](https://codeinstitute.s3.amazonaws.com/fullstack/ci_logo_small.png)
+# BattleShips ! 
+This game on the famous battleships game that originated on paper, then migrated to boards and now to PC screens. In this version, a human player plays against the computer. Both players have a board , on the human player board the ship positions are printed to the screen while on the computer board the ship positions remain hidden to the human player. 
+A ship is denoted on the board with an 'S', a hit on a ship is denoted with an 'X' while a miss is denoted with a 'M'. Empty sea / available guesses are denoted by '0' for the human player, all board locations for the computer are denoted with 'O' until there is either a hit or a miss. 
 
-Welcome 2macs,
-
-This is the Code Institute student template for deploying your third portfolio project, the Python command-line project. The last update to this file was: **August 17, 2021**
 
 ## Reminders
 
