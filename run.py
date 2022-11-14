@@ -14,8 +14,8 @@ game_state_over = False
 
 # Get terminal width to enable centering in the screen
 width = os.get_terminal_size().columns
-height = os.get_terminal_size().lines
-print(height)
+
+playsound('hq-explosion-6288.mp3')
 
 
 class GridBuilder:
