@@ -15,7 +15,7 @@ game_state_over = False
 # Get terminal width to enable centering in the screen
 width = os.get_terminal_size().columns
 
-playsound('hq-explosion-6288.mp3')
+playsound('/workspace/Super-Battleship-PP3/hq-explosion-6288.mp3')
 
 
 class GridBuilder:
