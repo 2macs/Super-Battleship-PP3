@@ -42,7 +42,11 @@ The game requires that the player can't enter the same co-ordinates twice, also,
 
 !['Validate not used twice'](assets/images/val3.PNG)
 
+## Data Model
+The game uses a class called GridBuilder. There are two instances of the class called PlayerBoard and computerBoard. The class maintains the state of each of the above objects and creates and prints the boards and places the players / computers ships on the respective board. 
+The class also stores the guesses made against each of the boards.
 
+A function called Main is used to initiate - kick off the game and a second function called playGame controls the game loop. 
 
 
 
