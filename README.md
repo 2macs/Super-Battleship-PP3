@@ -48,6 +48,45 @@ The class also stores the guesses made against each of the boards.
 
 A function called Main is used to initiate - kick off the game and a second function called playGame controls the game loop. 
 
+## Testing
+* On startup , a welcome message prints in blue text - passed.
+* On startup - the playerboard prints with 5 ship locations marked 'S' - passed.
+* On startup - the computer board prints with all locations marked '0' - passed. 
+* On startup, message and borads are centered in the terminal - passed.
+* Player is prompted to enter a row - passed.
+* Row must be a number , enter a letter to test, message if not a number - passed.
+* Row must be between 0 and 5, enter large number to test, message if out of scope - passed. 
+* Column must be a number as per row - passed
+* Column must be between 0 - 5 as per row, passed.
+* If user entry already tried, prompt to try again - passed.
+* If user entry already tried, not added again to guesses list - passed.
+* Computer generates a random guess - passed.
+* Games reports Hits and misses for the player / computer - passed. 
+* Game prompts the player to keep playing or quit - passed.
+* If 'N' selected game prints score and exits - passed. 
+* If 'Y' selected, screen clears, score prints and game boards reprint - passed. 
+* Game refreshes scores after each round - passed. 
+* Game restarts each round with score at top of screen and reprinted game boards - passed. 
+* When a MISS is registered , appropriate cell changes to 'M' - passed.
+* When a hit is registered , appropriate cell changes to 'X' - passed. 
+* When 5 ships for either player of computer are achieved - win message is printed - pass. 
+* Ctrl - c exits the game immediately - passed. 
+* Test player guesses stored correctly - passed ( player will not see these)
+* Test computer guesses stored correcty - passed (player will not see these)
+* Test 5 ships generated for the player - passed.
+* Test 5 ships generated for the computer - passed (player will not see these)
+
+### Bugs
+### Remaining Bugs
+### Validator Testing
+## Future Enhancements
+* Add sound when player shots and computer shots are fired. I succedded in doing this using the Spyder IDE with local file storage however, I was unable to play sound files stored in the github repository.
+* Prompt player for number of ships, this version the number of ships is constant at 5.
+* Prompt player for name, this version the player is called 'Player'.
+* Add multo size ships with different orientations.
+* Introudce a time element i.e. the enemy ships may move across the grid and escape if not destroyed in time. 
+
+
 
 
 
