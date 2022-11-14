@@ -63,6 +63,7 @@ class GridBuilder:
                 self.battleBoard[my_row][my_col] = 'S'
                 # print(f'Row is {my_row}, col is {my_col}')   
         else:
+            print(f'Computer ship position are {self.shipPositions}')
             for location in self.shipPositions:
                 my_row = location[0]    
                 my_col = location[1]    
@@ -75,8 +76,7 @@ class GridBuilder:
             
         guess_row = int(guess[0])
         guess_col = int(guess[1])
-       # print(f'Guess breaks down to row {guess_row} and col {guess_col}')
-        
+               
         # check if guess is a hit or a miss
         if guess in self.shipPositions:
             self.score += 1
@@ -132,17 +132,12 @@ class GridBuilder:
             computerGuessCol =  self.getRandomNumber(SIZE)
             print(f'Computer guessed row {computerGuessRow} and col {computerGuessCol}')
             guess = [computerGuessRow, computerGuessCol]
-            print(guess)  
             return guess 
     
     def validateGuess(self, guess):
         """Checks to see if the guess has already been tried, if it has it 
         prompts for the input to happen again"""
-        if self.name == 'playerBoard':
-            my_name = 'player'
-        else:
-             my_name = 'computer'
-        
+                
         if guess not in self.guesses:
             self.guesses.append(guess)
             return guess
@@ -190,11 +185,28 @@ def playGame(playerBoard, computerBoard):
             print(f'Player scored a {playerResult}!')
             checkEndGame(playerBoard, computerBoard)
 
-        computerGuess = GridBuilder.get_guess(computerBoard, 'computer')     
-        computerResult = GridBuilder.add_guess(playerBoard, computerGuess)    
-        print(f'Computer scored a {computerResult}!')
-        print(f'Player has lost {playerBoard.score} ship(s). Computer has lost {computerBoard.score} ship(s)')
-        checkEndGame(playerBoard, computerBoard)
+        computerGuess = GridBuilder.get_guess(computerBoard, 'computer') 
+        computerValidInput = GridBuilder.validateGuess(computerBoard, computerGuess)    
+        if computerValidInput == 0:
+            computerGuess = GridBuilder.get_guess(computerBoard, 'computer') 
+            computerValidInput = GridBuilder.validateGuess(computerBoard, computerGuess) 
+            computerResult = GridBuilder.add_guess(playerBoard, computerGuess)    
+            print(f'Computer scored a {computerResult}!')
+            checkEndGame(playerBoard, computerBoard)
+        else:
+            computerResult = GridBuilder.add_guess(playerBoard, computerGuess) 
+            print(f'Computer scored a {computerResult}!')
+            checkEndGame(playerBoard, computerBoard) 
+
+        playerQuest = input('Continue game, Y / N?: ') 
+        if playerQuest.upper() == 'Y':  
+            print('yes executed..')  
+            os.system('clear')    
+            print(f'Player has lost {playerBoard.score} ship(s). Computer has lost {computerBoard.score} ship(s)')
+            
+        else:
+            print(f'Player has lost {playerBoard.score} ship(s). Computer has lost {computerBoard.score} ship(s)')
+            exit(-1)       
 
 
 def checkEndGame(playerBoard, computerBoard):
