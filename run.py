@@ -7,7 +7,7 @@ import os
 from subprocess import call
 
 SIZE = 6
-NUMSHIPS = 4
+NUMSHIPS = 5
 game_state_over = False 
 
 # Get terminal width to enable centering in the screen
@@ -44,6 +44,7 @@ class GridBuilder:
     def PositionShips(self):
         """ Randomly locate NUMSHIPS of ships on the board"""
         shipsPlaced = 0 
+        
         while shipsPlaced < NUMSHIPS:
             random_row = self.getRandomNumber(SIZE)
             random_col = self.getRandomNumber(SIZE)
@@ -54,12 +55,19 @@ class GridBuilder:
                 self.shipPositions.append(thisLoc) 
                 shipsPlaced += 1
         
-        # draw the ships on the board
-        for location in self.shipPositions:
-           my_row = location[0]    
-           my_col = location[1]    
-           self.battleBoard[my_row][my_col] = 'S'
-           # print(f'Row is {my_row}, col is {my_col}')   
+        if self.name == 'player':
+            # draw the ships on the board
+            for location in self.shipPositions:
+                my_row = location[0]    
+                my_col = location[1]    
+                self.battleBoard[my_row][my_col] = 'S'
+                # print(f'Row is {my_row}, col is {my_col}')   
+        else:
+            for location in self.shipPositions:
+                my_row = location[0]    
+                my_col = location[1]    
+                self.battleBoard[my_row][my_col] = '0'
+
 
     def add_guess(self, guess):
         """ Tke the guess from the player and the computer, add to guess list if a new guess //
@@ -170,8 +178,7 @@ def playGame(playerBoard, computerBoard):
         GridBuilder.printGrid(computerBoard)  
         playerGuess = GridBuilder.get_guess(playerBoard, 'player')
         PlayerValidInput = GridBuilder.validateGuess(playerBoard, playerGuess)
-        print(f'Player valid input is {PlayerValidInput}')
-
+        
         if PlayerValidInput == 0:
             playerGuess = GridBuilder.get_guess(playerBoard, 'player')     
             PlayerValidInput = GridBuilder.validateGuess(playerBoard, playerGuess)
