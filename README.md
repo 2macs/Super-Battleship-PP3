@@ -22,6 +22,15 @@ The player is prompted to continue the game or not, if the player exitis then th
 
 On completion of the game, a message will print informing the player as to has won this time. 
 
+!['Game win'](assets/images/game_win.PNG)
+
+The game allows :
+* Take user input and check to see if enemy ships are hit
+* Play against a computer
+* Provides feedback with respect to the ongoing score
+
+
+
 
 
 
