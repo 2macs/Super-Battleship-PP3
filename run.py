@@ -5,7 +5,7 @@
 import random
 import os
 from colorama import Fore, Back, Style
-from playsound import playsound
+
 
 
 SIZE = 6
@@ -15,7 +15,7 @@ game_state_over = False
 # Get terminal width to enable centering in the screen
 width = os.get_terminal_size().columns
 
-playsound('boom.mp3')
+
 
 
 class GridBuilder:
