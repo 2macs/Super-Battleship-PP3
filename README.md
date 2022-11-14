@@ -29,6 +29,24 @@ The game allows :
 * Play against a computer
 * Provides feedback with respect to the ongoing score
 
+### Input Validation -Error checking
+The game requires that the player enters a number between 0 and 5. If the player tries to enter a number outside the range an error message appears and the player is prompted to try again. 
+
+!['Validate number'](assets/images/val1.PNG)
+
+The game requires that the player enters a number and not a letter. 
+
+!['Validate not a letter'](assets/images/val2.PNG)
+
+The game requires that the player can't enter the same co-ordinates twice, also, the computer cannot randomly use the same the co-ordinates twice
+
+!['Validate not used twice'](assets/images/val3.PNG)
+
+
+
+
+
+
 
 
 
