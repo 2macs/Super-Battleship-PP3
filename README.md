@@ -118,6 +118,8 @@ The above output is caused primarily by variable naming / sizing for clarity and
 * Python for Everybody, Charles Severance
 * The self taught programmer, Cory Althoff
 
+## Deployment
+
 
 ## Creating the Heroku app
 
