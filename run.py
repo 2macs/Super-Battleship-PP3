@@ -93,7 +93,7 @@ class GridBuilder:
 
             while True:
                 try:
-                    playerGuessRow = int(input('Enter a row number 0 - 5: '))
+                    playerGuessRow = int(input('Enter a row number 0 - 5: \n'))
                 except ValueError:
                     print('Entry must be a number')
                     continue
@@ -107,7 +107,7 @@ class GridBuilder:
             while True:
                 try:
                     playerGuessCol = int(input(
-                            'Enter a column number 0 - 5: '))
+                            'Enter a column number 0 - 5: \n'))
                 except ValueError:
                     print('Entry must be a number')
                     continue
@@ -199,7 +199,7 @@ def playGame(playerBoard, computerBoard):
             print(Style.RESET_ALL)
             checkEndGame(playerBoard, computerBoard)
 
-        playerQuest = input('Continue game, Y / N?: ')
+        playerQuest = input('Continue game, Y / N?: \n')
         if playerQuest.upper() == 'Y':
             print('yes executed..')
             os.system('clear')
@@ -215,7 +215,7 @@ def checkEndGame(playerBoard, computerBoard):
     if playerBoard.score == NUMSHIPS:  # All player ships are sunk
         print(Fore.RED + f'Computer has hit all your ships ! You lose this one!')
         print(Style.RESET_ALL)
-        replay = input('Play again Y / N ?: ')
+        replay = input('Play again Y / N ?: \n')
         if replay.upper() == 'Y':
             main()
         else:
@@ -223,7 +223,7 @@ def checkEndGame(playerBoard, computerBoard):
     elif computerBoard.score == NUMSHIPS:
         print(Fore.BLUE + f'You hit all the computer ships! You win!')
         print(Style.RESET_ALL)
-        replay = input('Play again Y / N ?: ')
+        replay = input('Play again Y / N ?: \n')
         if replay.upper() == 'Y':
             os.system('clear')
             main()
