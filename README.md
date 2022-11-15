@@ -77,14 +77,37 @@ A function called Main is used to initiate - kick off the game and a second func
 * Test 5 ships generated for the computer - passed (player will not see these)
 
 ### Bugs
+#### Solved Bugs
+* Initially my co-ordinate selections were blowing up my own ships ! Fixed by passing computerboard object and player guess to class method.
+* If the player selected the same co-ordinates more than twice the game crashed with an error. Fixed by implementing a while loop.
+* Initially, both player and computer boards displayed ship positions, this worked well for early stages to enable game debugging, corrected so that computer board does not display ship positions.
 ### Remaining Bugs
+N/A , none known
 ### Validator Testing
+The code was passed through the CI Python Linter app. All PEP8 corrections were made with the following exceptions;
+Results:
+146: E501 line too long (98 > 79 characters)
+147: E501 line too long (103 > 79 characters)
+175: E501 line too long (86 > 79 characters)
+176: E501 line too long (81 > 79 characters)
+181: E501 line too long (81 > 79 characters)
+187: E501 line too long (84 > 79 characters)
+190: E501 line too long (80 > 79 characters)
+191: E501 line too long (92 > 79 characters)
+206: E501 line too long (114 > 79 characters)
+209: E501 line too long (114 > 79 characters)
+216: E501 line too long (81 > 79 characters)
+The above output is caused primarily by variable naming / sizing for clarity and printing feedback to the screen. As the game functions well, will not correct these at this point. 
+
 ## Future Enhancements
 * Add sound when player shots and computer shots are fired. I succedded in doing this using the Spyder IDE with local file storage however, I was unable to play sound files stored in the github repository.
 * Prompt player for number of ships, this version the number of ships is constant at 5.
 * Prompt player for name, this version the player is called 'Player'.
 * Add multi size ships with different orientations.
 * Introduce a time element i.e. the enemy ships may move across the grid and escape if not destroyed in time.
+
+## Credits
+* https://www.pythonmorsels.com/breaking-long-lines-code-python/  Python Morsels.
 
 
 ## Code Institute
