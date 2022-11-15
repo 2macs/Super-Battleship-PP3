@@ -52,7 +52,9 @@ A function called Main is used to initiate - kick off the game and a second func
 * On startup , a welcome message prints in blue text - passed.
 * On startup - the playerboard prints with 5 ship locations marked 'S' - passed.
 * On startup - the computer board prints with all locations marked '0' - passed. 
-* On startup, message and borads are centered in the terminal - passed.
+* On startup, message and boards are centered in the terminal - passed.
+* On startup, 2 grids, each 6 * 6 print to the screen - passed.
+* On startup , player is informwd that top left hand corener is 0,0 - passed.
 * Player is prompted to enter a row - passed.
 * Row must be a number , enter a letter to test, message if not a number - passed.
 * Row must be between 0 and 5, enter large number to test, message if out of scope - passed. 

@@ -143,7 +143,8 @@ class GridBuilder:
 
 def welcomeMessage():
     print(Fore.YELLOW + '-----Welcome to Battleship! Destroy the Enemy fleet!-----'.center(width))
-    print(Fore.YELLOW + '-----Empty sea is 0, ship loc is S, hit is X, miss is M-----\n'.center(width))
+    print(Fore.YELLOW + '-----Empty sea is 0, ship loc is S, hit is X, miss is M-----'.center(width))
+    print(Fore.YELLOW + '-----Top left hand corner is Row 0, Column 0-----\n'.center(width))
     print(Style.RESET_ALL)
 
 
