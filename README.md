@@ -59,6 +59,7 @@ A function called Main is used to initiate - kick off the game and a second func
 * Column must be a number as per row - passed
 * Column must be between 0 - 5 as per row, passed.
 * If user entry already tried, prompt to try again - passed.
+* Prompt with same co-ordinates multiple times - passed.
 * If user entry already tried, not added again to guesses list - passed.
 * Computer generates a random guess - passed.
 * Games reports Hits and misses for the player / computer - passed. 
@@ -81,8 +82,10 @@ A function called Main is used to initiate - kick off the game and a second func
 * Initially my co-ordinate selections were blowing up my own ships ! Fixed by passing computerboard object and player guess to class method.
 * If the player selected the same co-ordinates more than twice the game crashed with an error. Fixed by implementing a while loop.
 * Initially, both player and computer boards displayed ship positions, this worked well for early stages to enable game debugging, corrected so that computer board does not display ship positions.
+
 ### Remaining Bugs
 N/A , none known
+
 ### Validator Testing
 The code was passed through the CI Python Linter app. All PEP8 corrections were made with the following exceptions;
 Results:
@@ -108,12 +111,13 @@ The above output is caused primarily by variable naming / sizing for clarity and
 
 ## Credits
 * https://www.pythonmorsels.com/breaking-long-lines-code-python/  Python Morsels.
+* https://www.geeksforgeeks.org/python-programming-language/  Geeks for Geeks.
+* https://www.codecademy.com The code Academy
+* https://linuxhint.com/play_sound_python/  Play sound with Python
+* The Python Bible, 7 in 1 - Florian Dedov
+* Python for Everybody, Charles Severance
+* The self taught programmer, Cory Althoff
 
-
-## Code Institute
-* Your code must be placed in the `run.py` file
-* Your dependencies must be placed in the `requirements.txt` file
-* Do not edit any of the other files or your code may not deploy properly
 
 ## Creating the Heroku app
 
