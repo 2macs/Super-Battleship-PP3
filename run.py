@@ -173,15 +173,15 @@ def main():
 def playGame(playerBoard, computerBoard):
     """ Controls the game loop"""
     while True:
-        PlayerValidInput = 1
         GridBuilder.printGrid(playerBoard)
         GridBuilder.printGrid(computerBoard)  
         playerGuess = GridBuilder.get_guess(playerBoard, 'player')
-        PlayerValidInput = GridBuilder.validateGuess(playerBoard, playerGuess)
+        PlayerValidInput = GridBuilder.validateGuess(playerBoard, playerGuess)        
         
         if PlayerValidInput == 0:
-            playerGuess = GridBuilder.get_guess(playerBoard, 'player')     
-            PlayerValidInput = GridBuilder.validateGuess(playerBoard, playerGuess)
+            while PlayerValidInput == 0: 
+                playerGuess = GridBuilder.get_guess(playerBoard, 'player')     
+                PlayerValidInput = GridBuilder.validateGuess(playerBoard, playerGuess)
             playerResult = GridBuilder.add_guess(computerBoard, PlayerValidInput)
             print(Fore.GREEN + f'Player scored a {playerResult}!')
             print(Style.RESET_ALL)
@@ -195,8 +195,9 @@ def playGame(playerBoard, computerBoard):
         computerGuess = GridBuilder.get_guess(computerBoard, 'computer') 
         computerValidInput = GridBuilder.validateGuess(computerBoard, computerGuess)    
         if computerValidInput == 0:
-            computerGuess = GridBuilder.get_guess(computerBoard, 'computer') 
-            computerValidInput = GridBuilder.validateGuess(computerBoard, computerGuess) 
+            while computerValidInput == 0:
+                computerGuess = GridBuilder.get_guess(computerBoard, 'computer') 
+                computerValidInput = GridBuilder.validateGuess(computerBoard, computerGuess) 
             computerResult = GridBuilder.add_guess(playerBoard, computerGuess)    
             print(Fore.RED + f'Computer scored a {computerResult}!')
             print(Style.RESET_ALL)
